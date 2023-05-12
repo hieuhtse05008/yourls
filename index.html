@@ -16,7 +16,7 @@
         <div class="container mb-5">
             <div class="d-flex justify-start">
                 <button v-for="tab in tabs" type="button" 
-                :class="{"btn-outline-primary": tab.key == currentTab.key, }"
+                :class="{'btn-outline-light': tab.key == currentTab.key,'btn-outline-dark': tab.key == currentTab.key, }"
                 class="btn btn-close-white me-3" @click="activeTab(tab)">
                     {{tab.name}}
                 </button>
