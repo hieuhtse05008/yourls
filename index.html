@@ -12,32 +12,40 @@
 
 <body style="    background: grey;">
 
-    <div class="container-fluid py-5" id="app">
-        <div class="container mb-5">
-            <div class="d-flex justify-start">
-                <button v-for="tab in tabs" type="button" 
-                :class="{'btn-outline-light': tab.key == currentTab.key,'btn-outline-dark': tab.key == currentTab.key, }"
-                class="btn btn-close-white me-3" @click="activeTab(tab)">
-                    {{tab.name}}
-                </button>
+<div class="container-fluid py-5" id="app">
+    <div class="container mb-5">
+        <div class="d-flex justify-content-between">
 
-            </div>
+        <div class="d-flex justify-start">
+            <button v-for="tab in tabs" type="button"
+                    :class="{'btn-outline-light': tab.key == currentTab.key,'btn-outline-dark': tab.key == currentTab.key, }"
+                    class="btn btn-close-white me-3" @click="activeTab(tab)">
+                {{tab.name}}
+            </button>
+
         </div>
-        <div class="container" id="content">
-            <div v-for="(i, index) in items" class="d-flex justify-content-center align-items-center mb-3">
-                <div class="btn btn-info me-3">
-                    {{i.count}}
+            <div  class="d-flex justify-end">
+                <div class="btn btn me-3" @click="openAll">
+                    Open All
                 </div>
-                <a  :href="i.url"
-                @click="count(index)"
-                target="_blank" class="btn text-truncate" :class="{'btn-dark' : i.count, 'btn-light': !i.count}">
-                    {{i.url}}
-                </a>
-
             </div>
         </div>
     </div>
-    <script src="./index.js"></script>
+    <div class="container" id="content">
+        <div v-for="(i, index) in items" class="d-flex justify-content-center align-items-center mb-3">
+            <div class="btn btn-info me-3">
+                {{i.count}}
+            </div>
+            <a  :href="i.url"
+                @click="count(index)"
+                target="_blank" class="btn text-truncate" :class="{'btn-dark' : i.count, 'btn-light': !i.count}">
+                {{i.url}}
+            </a>
+
+        </div>
+    </div>
+</div>
+<script src="./index.js"></script>
 </body>
 
 </html>
