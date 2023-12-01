@@ -43,7 +43,7 @@ const defaultTabs = [
             { url:"https://www.facebook.com/search/posts?q=thu%C3%AA%20CT3%20m%E1%BB%85%20tr%C3%AC%20h%E1%BA%A1&filters=eyJyZWNlbnRfcG9zdHM6MCI6IntcIm5hbWVcIjpcInJlY2VudF9wb3N0c1wiLFwiYXJnc1wiOlwiXCJ9In0%3D", count:0},
             { url:"https://www.facebook.com/search/posts?q=thu%C3%AA%20CT4%20m%E1%BB%85%20tr%C3%AC%20h%E1%BA%A1&filters=eyJyZWNlbnRfcG9zdHM6MCI6IntcIm5hbWVcIjpcInJlY2VudF9wb3N0c1wiLFwiYXJnc1wiOlwiXCJ9In0%3D", count:0},
             // { url:"", count:0},
-            
+
         ]
     },
     { key: 'others', name: 'Others' , items:[]},
@@ -54,13 +54,13 @@ createApp({
             if (e.key == "ArrowRight") {
                 this.next();
             }
-          });
+        });
     },
     computed:{
         items(){
             return this.currentTab.items.sort((a,b)=>a.count > b.count ? 1 : -1);
-        }       
-        
+        }
+
     },
     methods:{
         activeTab(tab){
@@ -69,8 +69,15 @@ createApp({
         },
         next(){
             window.open(this.items[0].url, '_blank').focus();
-            this.count(0)
+            this.count(0);
 
+        },
+        openAll(){
+            this.items.forEach((e,i)=>{
+                setTimeout(()=>{
+                    window.open(this.items[i].url, '_blank');
+                },i*1000);
+            });
         },
         count(index){
             this.tabs = this.tabs.map(t=>{
@@ -78,7 +85,7 @@ createApp({
                     t.items = t.items.map((e,i)=> i==index ?{...e,count:e.count+1} : e);
                     this.currentTab = t;
                 }
-                
+
                 return t;
             });
         },
